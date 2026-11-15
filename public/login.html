@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Masuk ke dashboard Rizka Adsens untuk mengelola iklan Adsterra.">
+<title>Masuk | Rizka Adsens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pine: #1E352C;
+    --pine-deep: #16261F;
+    --pine-soft: #2C4A3B;
+    --cream: #F6F0E4;
+    --warm-white: #FFFDF8;
+    --ink: #1F2A24;
+    --muted: #5C665F;
+    --sage: #6F8A72;
+    --sage-deep: #4F6B54;
+    --sage-light: #A9C0A9;
+    --coral: #D9674F;
+    --coral-deep: #A8452F;
+    --coral-soft: #E8B4A6;
+    --border: #8C8475;
+    --line: #DCD3C2;
+    --input-bg: #FBF7EE;
+    --error-bg: #F9E9E3;
+    --error-line: #E7C2B5;
+    --error-text: #8F3A26;
+    --success-bg: #EDF3EC;
+    --success-line: #C8D8C8;
+    --success-text: #3F5E46;
+    --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { color-scheme: light; }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button, input { font: inherit; }
+
+  button { cursor: pointer; }
+
+  button:disabled { cursor: not-allowed; }
+
+  ::selection { background: var(--pine); color: var(--cream); }
+
+  [hidden] { display: none !important; }
+
+  .page {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+    min-height: 100dvh;
+  }
+
+  /* ---------- Studio panel ---------- */
+
+  .studio {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(26px, 4vw, 56px);
+    color: var(--cream);
+    background:
+      linear-gradient(152deg, #29483B 0%, var(--pine) 52%, #182B23 100%);
+  }
+
+  .brand {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mark {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    padding-top: 2px;
+    border-radius: 15px;
+    background: var(--cream);
+    color: var(--pine);
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1;
+    box-shadow: inset 0 -3px 0 rgba(30, 53, 44, .14), 0 8px 18px -8px rgba(5, 12, 9, .65);
+  }
+
+  .brand-name {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .01em;
+  }
+
+  .brand-sub {
+    display: block;
+    margin-top: 1px;
+    color: #C9C2B2;
+    font-size: 11.5px;
+    letter-spacing: .04em;
+  }
+
+  .studio-copy {
+    position: relative;
+    z-index: 5;
+    align-self: start;
+    max-width: 500px;
+    padding-top: clamp(40px, 9vh, 100px);
+  }
+
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--sage-light);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+
+  .kicker::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    flex: 0 0 24px;
+    background: currentColor;
+    opacity: .75;
+  }
+
+  .tagline {
+    margin: 18px 0 0;
+    font-family: var(--serif);
+    font-size: clamp(46px, 5vw, 78px);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -.02em;
+  }
+
+  .tagline em {
+    color: var(--coral-soft);
+    font-style: italic;
+  }
+
+  .lede {
+    max-width: 37ch;
+    margin: 22px 0 0;
+    color: #D8D0BF;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .studio-foot {
+    position: relative;
+    z-index: 5;
+    align-self: end;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #C9C2B2;
+    font-size: 11px;
+    letter-spacing: .04em;
+  }
+
+  .studio-foot-line {
+    width: 30px;
+    height: 1px;
+    background: currentColor;
+    opacity: .45;
+  }
+
+  /* ---------- Decorative studio scene ---------- */
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .spotlight {
+    position: absolute;
+    left: max(-16vw, -230px);
+    bottom: max(-18vw, -260px);
+    width: min(42vw, 540px);
+    height: min(42vw, 540px);
+    border-radius: 50%;
+    background: #C95B45;
+    box-shadow:
+      inset -26px -30px 64px rgba(122, 47, 32, .34),
+      inset 20px 22px 54px rgba(255, 217, 194, .16);
+  }
+
+  .orbit {
+    position: absolute;
+    left: max(-19vw, -272px);
+    bottom: max(-21vw, -302px);
+    width: min(50vw, 640px);
+    height: min(50vw, 640px);
+    border: 1px solid rgba(246, 240, 228, .16);
+    border-radius: 50%;
+  }
+
+  .orbit-b {
+    left: max(-23vw, -322px);
+    bottom: max(-25vw, -352px);
+    width: min(58vw, 740px);
+    height: min(58vw, 740px);
+    border-style: dashed;
+    border-color: rgba(246, 240, 228, .12);
+  }
+
+  .ad-card {
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid rgba(31, 42, 36, .12);
+    border-bottom: 5px solid #D8CDBB;
+    border-radius: 18px;
+    background: var(--warm-white);
+    box-shadow: 0 26px 46px -24px rgba(5, 12, 9, .62);
+    transform: rotate(var(--rot));
+  }
+
+  .card-a {
+    --rot: -6deg;
+    right: clamp(28px, 5vw, 78px);
+    bottom: clamp(170px, 24vh, 260px);
+    width: 150px;
+  }
+
+  .card-b {
+    --rot: 7deg;
+    right: clamp(168px, 16vw, 248px);
+    bottom: clamp(300px, 36vh, 400px);
+    width: 118px;
+    border-bottom-color: #3F5E46;
+    background: #6F8A72;
+  }
+
+  .card-c {
+    --rot: 4deg;
+    right: clamp(38px, 6vw, 96px);
+    bottom: clamp(366px, 44vh, 470px);
+    width: 104px;
+    border-bottom-color: #D8CDBB;
+  }
+
+  .ad-card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ad-dot {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+
+  .ad-line {
+    width: 56%;
+    height: 6px;
+    border-radius: 3px;
+    background: #D8CDBB;
+  }
+
+  .card-b .ad-line { background: rgba(255, 253, 248, .55); }
+
+  .ad-bars {
+    display: flex;
+    align-items: end;
+    gap: 6px;
+    height: 56px;
+    padding-top: 4px;
+    border-bottom: 2px solid #E7DFD0;
+  }
+
+  .ad-bars span {
+    width: 18px;
+    height: var(--h);
+    border-radius: 4px 4px 0 0;
+    background: var(--sage);
+  }
+
+  .ad-bars span:nth-child(2) { background: var(--coral); }
+  .ad-bars span:nth-child(3) { background: #2A4A45; }
+  .ad-bars span:nth-child(4) { background: #E8B4A6; }
+
+  .ad-chart {
+    display: block;
+    width: 100%;
+    height: 62px;
+  }
+
+  .ad-banner {
+    display: grid;
+    place-items: center;
+    height: 58px;
+    border-radius: 10px;
+    background: #F1EADC;
+    color: var(--sage-deep);
+  }
+
+  .ad-banner svg { width: 34px; height: 34px; }
+
+  .plant {
+    position: absolute;
+    right: clamp(28px, 5vw, 76px);
+    bottom: 52px;
+    z-index: 1;
+    width: clamp(76px, 8vw, 108px);
+    filter: drop-shadow(0 18px 24px rgba(5, 12, 9, .38));
+  }
+
+  .plant svg { display: block; width: 100%; height: auto; }
+
+  .mascot {
+    position: absolute;
+    left: 10px;
+    bottom: -10px;
+    z-index: 3;
+    width: clamp(198px, 22vw, 300px);
+    height: auto;
+    pointer-events: none;
+    filter: drop-shadow(0 26px 32px rgba(5, 12, 9, .36));
+  }
+
+  /* ---------- Access panel ---------- */
+
+  .access {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: clamp(28px, 4vw, 64px);
+    background: var(--cream);
+  }
+
+  .login-card {
+    width: min(100%, 440px);
+    padding: clamp(26px, 3.4vw, 40px);
+    border: 1px solid rgba(31, 42, 36, .12);
+    border-radius: 28px;
+    background: var(--warm-white);
+    box-shadow:
+      0 34px 70px -36px rgba(31, 42, 36, .5),
+      0 1px 0 rgba(255, 255, 255, .9) inset;
+  }
+
+  .card-head h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(34px, 3.6vw, 44px);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -.02em;
+    color: var(--ink);
+  }
+
+  .card-head h1 em {
+    color: var(--coral-deep);
+    font-style: italic;
+  }
+
+  .card-head .sub {
+    max-width: 33ch;
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .field { margin-top: 24px; }
+
+  .field + .field { margin-top: 18px; }
+
+  .field label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+
+  .control {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .field-icon {
+    position: absolute;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    color: var(--sage-deep);
+    pointer-events: none;
+  }
+
+  .control input {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 16px 14px 46px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.4;
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+
+  .control input::placeholder { color: #6F6A5F; opacity: 1; }
+
+  .control input:hover { border-color: #6F6A5F; }
+
+  .control input:focus-visible {
+    border-color: var(--pine);
+    outline: 2px solid var(--coral-deep);
+    outline-offset: 2px;
+    background: var(--warm-white);
+  }
+
+  .control input:disabled {
+    background: #EFE8DA;
+    color: var(--muted);
+  }
+
+  .control input[aria-invalid="true"] { border-color: var(--error-text); }
+
+  .control input[type="password"] { padding-right: 56px; }
+
+  .toggle-pass {
+    position: absolute;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--muted);
+    transition: background .18s ease, color .18s ease;
+  }
+
+  .toggle-pass:hover { background: #F1EADC; color: var(--ink); }
+
+  .toggle-pass:active { background: #E7DFD0; }
+
+  .toggle-pass:focus-visible {
+    outline: 2px solid var(--coral-deep);
+    outline-offset: 1px;
+  }
+
+  .toggle-pass svg { width: 20px; height: 20px; }
+
+  .hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 8px 0 0;
+    color: var(--coral-deep);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .hint svg { flex: 0 0 14px; margin-top: 1px; }
+
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 18px 0 22px;
+  }
+
+  .remember {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    color: var(--ink);
+    font-size: 13px;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .remember input {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    opacity: 0;
+  }
+
+  .checkbox-box {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: var(--input-bg);
+    color: var(--cream);
+    transition: background .18s ease, border-color .18s ease;
+  }
+
+  .checkbox-box svg { width: 14px; height: 14px; opacity: 0; transition: opacity .18s ease; }
+
+  .remember input:checked + .checkbox-box {
+    border-color: var(--pine);
+    background: var(--pine);
+  }
+
+  .remember input:checked + .checkbox-box svg { opacity: 1; }
+
+  .remember:hover .checkbox-box { border-color: var(--pine); }
+
+  .remember:active .checkbox-box { transform: scale(.96); }
+
+  .remember input:focus-visible + .checkbox-box {
+    outline: 2px solid var(--coral-deep);
+    outline-offset: 3px;
+  }
+
+  .remember input:disabled + .checkbox-box {
+    background: #EFE8DA;
+    border-color: #B5AC9B;
+  }
+
+  .session-note {
+    color: var(--muted);
+    font-size: 11.5px;
+    white-space: nowrap;
+  }
+
+  .submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 54px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--pine);
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    box-shadow: 0 16px 26px -16px rgba(30, 53, 44, .8);
+    transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+
+  .submit:hover:not(:disabled) {
+    background: var(--pine-soft);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px -16px rgba(30, 53, 44, .85);
+  }
+
+  .submit:active:not(:disabled) {
+    transform: translateY(0);
+    background: var(--pine-deep);
+    box-shadow: 0 10px 18px -14px rgba(30, 53, 44, .8);
+  }
+
+  .submit:focus-visible {
+    outline: 2px solid var(--coral-deep);
+    outline-offset: 3px;
+  }
+
+  .submit:disabled {
+    background: var(--sage-deep);
+    box-shadow: none;
+  }
+
+  .spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(246, 240, 228, .35);
+    border-top-color: var(--cream);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+
+  .submit.is-loading .spinner { display: block; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .feedback {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 14px 0 0;
+    padding: 11px 13px;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .feedback svg { flex: 0 0 18px; margin-top: 1px; }
+
+  .feedback.error {
+    border-color: var(--error-line);
+    background: var(--error-bg);
+    color: var(--error-text);
+  }
+
+  .feedback.success {
+    border-color: var(--success-line);
+    background: var(--success-bg);
+    color: var(--success-text);
+  }
+
+  .card-foot {
+    display: grid;
+    gap: 6px;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid #E7DFD0;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .card-foot p { margin: 0; }
+
+  .card-foot .access-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .card-foot .access-note svg { flex: 0 0 14px; }
+
+  .access-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 18px;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .access-foot p { margin: 0; }
+
+  .noscript {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    margin: 0;
+    padding: 10px 16px;
+    background: var(--error-text);
+    color: var(--warm-white);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* ---------- Entrance motion ---------- */
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(20px) rotate(var(--rot)); }
+    to { opacity: 1; transform: translateY(0) rotate(var(--rot)); }
+  }
+
+  @keyframes mascot-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .brand, .studio-copy, .studio-foot { animation: rise .55s cubic-bezier(.2, .75, .3, 1) both; }
+  .studio-copy { animation-delay: .06s; }
+  .login-card { animation: rise .65s .1s cubic-bezier(.2, .75, .3, 1) both; }
+  .mascot { animation: mascot-in .7s .18s cubic-bezier(.2, .75, .3, 1) both; }
+  .ad-card { animation: card-in .65s cubic-bezier(.2, .75, .3, 1) both; }
+  .card-b { animation-delay: .12s; }
+  .card-c { animation-delay: .2s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ---------- Tablet ---------- */
+
+  @media (max-width: 1120px) {
+    .studio { padding: 32px; }
+    .studio-copy { padding-top: clamp(32px, 7vh, 72px); }
+    .tagline { font-size: clamp(42px, 5.4vw, 62px); }
+    .mascot { width: clamp(186px, 23vw, 250px); }
+    .card-b { right: 168px; }
+    .card-c { display: none; }
+    .plant { right: 32px; width: 82px; }
+    .login-card { padding: 30px; }
+  }
+
+  @media (max-height: 780px) and (min-width: 901px) {
+    .studio-copy { padding-top: 28px; }
+    .tagline { font-size: clamp(40px, 4.2vw, 54px); }
+    .lede { margin-top: 16px; font-size: 14px; }
+    .mascot { width: clamp(176px, 19vw, 236px); }
+    .card-a { bottom: 150px; }
+    .card-b { bottom: 270px; }
+    .card-c { display: none; }
+    .studio-foot { font-size: 10px; }
+  }
+
+  /* ---------- Mobile ---------- */
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+      min-height: 100dvh;
+    }
+
+    .studio {
+      z-index: 2;
+      min-height: 268px;
+      padding: 22px 22px 0;
+      overflow: visible;
+    }
+
+    .brand { gap: 12px; }
+
+    .mark {
+      width: 40px;
+      height: 40px;
+      flex-basis: 40px;
+      font-size: 24px;
+    }
+
+    .brand-name { font-size: 15px; }
+    .brand-sub { font-size: 11px; }
+
+    .studio-copy {
+      max-width: 100%;
+      padding-top: 30px;
+    }
+
+    .kicker { font-size: 11.5px; }
+
+    .tagline {
+      margin-top: 14px;
+      font-size: clamp(34px, 9vw, 46px);
+    }
+
+    .tagline em { color: var(--cream); }
+
+    .lede { display: none; }
+
+    .scene { overflow: hidden; }
+
+    .spotlight {
+      left: auto;
+      right: -92px;
+      bottom: -152px;
+      width: 300px;
+      height: 300px;
+    }
+
+    .orbit, .orbit-b, .ad-card, .plant { display: none; }
+
+    .mascot {
+      left: auto;
+      right: 12px;
+      bottom: -30px;
+      width: 128px;
+      animation-delay: .14s;
+    }
+
+    .studio-foot { display: none; }
+
+    .access {
+      z-index: 1;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 54px 18px 30px;
+    }
+
+    .login-card {
+      padding: 26px 22px;
+      border-radius: 24px;
+    }
+
+    .card-head h1 { font-size: 36px; }
+
+    .access-foot { font-size: 11px; }
+  }
+
+  @media (max-width: 420px) {
+    .studio { min-height: 248px; }
+
+    .tagline { font-size: clamp(31px, 9.4vw, 38px); }
+
+    .lede { max-width: 27ch; }
+
+    .mascot { width: 112px; right: 8px; }
+
+    .login-card { padding: 24px 18px; }
+
+    .card-head h1 { font-size: 33px; }
+  }
+
+  @media (max-width: 340px) {
+    .tagline { font-size: 30px; }
+    .mascot { width: 84px; right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<main class="page">
+  <section class="studio" aria-label="Rizka Adsens">
+    <header class="brand">
+      <span class="mark" aria-hidden="true">R</span>
+      <span class="brand-copy">
+        <span class="brand-name">Rizka Adsens</span>
+        <span class="brand-sub">Console iklan</span>
+      </span>
+    </header>
+
+    <div class="studio-copy">
+      <p class="kicker">Studio iklan Adsterra</p>
+      <p class="tagline">Iklan tertata.<br><em>Kerja lebih tenang.</em></p>
+      <p class="lede">Kelola daftar iklan, penempatan, dan status aktifnya dari satu dashboard.</p>
+    </div>
+
+    <div class="scene" aria-hidden="true">
+      <div class="spotlight"></div>
+      <div class="orbit"></div>
+      <div class="orbit orbit-b"></div>
+
+      <div class="ad-card card-a">
+        <div class="ad-card-top">
+          <span class="ad-dot"></span>
+          <span class="ad-line"></span>
+        </div>
+        <div class="ad-bars">
+          <span style="--h:34%"></span>
+          <span style="--h:58%"></span>
+          <span style="--h:82%"></span>
+          <span style="--h:46%"></span>
+        </div>
+      </div>
+
+      <div class="ad-card card-b">
+        <div class="ad-card-top">
+          <span class="ad-dot" style="background:#FFFDF8"></span>
+          <span class="ad-line"></span>
+        </div>
+        <svg class="ad-chart" viewBox="0 0 74 62" fill="none" aria-hidden="true">
+          <path d="M4 50h66" stroke="#FFFDF8" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+          <path d="M6 44 24 30l14 7 26-21" stroke="#FFFDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="64" cy="16" r="4" fill="#E8B4A6"/>
+        </svg>
+      </div>
+
+      <div class="ad-card card-c">
+        <div class="ad-card-top">
+          <span class="ad-dot"></span>
+          <span class="ad-line"></span>
+        </div>
+        <div class="ad-banner">
+          <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+            <rect x="3.5" y="6.5" width="27" height="21" rx="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="13" r="2.5" fill="currentColor"/>
+            <path d="m6 24 7-7 4 4 5-6 6 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="plant">
+        <svg viewBox="0 0 120 146" fill="none" aria-hidden="true">
+          <ellipse cx="60" cy="136" rx="34" ry="7" fill="#08120E" opacity=".28"/>
+          <path d="M42 96h36l-5 32c-.6 4-3.6 6-7 6H54c-3.4 0-6.4-2-7-6l-5-32Z" fill="#A8452F"/>
+          <path d="M42 96h36l-2 8H44l-2-8Z" fill="#D9674F"/>
+          <path d="M60 96C58 68 47 46 27 33c-2 26 10 50 33 63Z" fill="#5E7A62"/>
+          <path d="M60 96c3-24 14-42 31-53 1 23-10 44-31 53Z" fill="#6F8A72"/>
+          <path d="M59 96C55 72 43 55 27 44" stroke="#A9C0A9" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+          <path d="M61 96c4-20 14-35 28-44" stroke="#A9C0A9" stroke-width="2" stroke-linecap="round" opacity=".45"/>
+          <path d="M53 58c-8-5-14-13-16-22 10 3 17 11 20 20" fill="#4F6B54"/>
+        </svg>
+      </div>
+    </div>
+
+    <img class="mascot" src="assets/mascot.svg" alt="" width="420" height="520" fetchpriority="high" decoding="async">
+
+    <footer class="studio-foot">
+      <span>Adsterra console</span>
+      <span class="studio-foot-line" aria-hidden="true"></span>
+      <span>2026</span>
+    </footer>
+  </section>
+
+  <section class="access" aria-labelledby="login-title">
+    <div class="login-card">
+      <div class="card-head">
+        <h1 id="login-title">Masuk ke <em>studio.</em></h1>
+        <p class="sub">Gunakan akun admin untuk membuka dashboard iklan.</p>
+      </div>
+
+      <form id="loginForm" action="/login" method="post">
+        <div class="field">
+          <label for="username">Username</label>
+          <div class="control">
+            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="9" r="3.4"/>
+              <path d="M5.5 19c.7-3.6 3.2-5.6 6.5-5.6s5.8 2 6.5 5.6"/>
+              <path d="M10.4 9.2c.4.5 1 .8 1.6.8s1.2-.3 1.6-.8"/>
+            </svg>
+            <input type="text" id="username" name="username" placeholder="Masukkan username" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="control">
+            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4.5" y="10" width="15" height="10.5" rx="3"/>
+              <path d="M8 10V7.5a4 4 0 0 1 8 0V10"/>
+              <circle cx="12" cy="14.5" r="1.4"/>
+              <path d="M12 15.9v2"/>
+            </svg>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password" required>
+            <button type="button" class="toggle-pass" id="togglePass" aria-label="Tampilkan password" aria-pressed="false" aria-controls="password">
+              <svg id="eyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2.5 12c2.3-3.8 5.3-5.7 9.5-5.7s7.2 1.9 9.5 5.7c-2.3 3.8-5.3 5.7-9.5 5.7S4.8 15.8 2.5 12Z"/>
+                <circle cx="12" cy="12" r="2.8"/>
+                <circle cx="13.2" cy="10.8" r=".8" fill="currentColor" stroke="none"/>
+              </svg>
+              <svg id="eyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <path d="M4 4l16 16"/>
+                <path d="M9.9 6.7A10.7 10.7 0 0 1 12 6.3c4.2 0 7.2 1.9 9.5 5.7a17 17 0 0 1-3.2 3.9"/>
+                <path d="M6.1 8.4A17.4 17.4 0 0 0 2.5 12c2.3 3.8 5.3 5.7 9.5 5.7 1.5 0 2.8-.2 4-.7"/>
+                <path d="M10.2 10.2a2.8 2.8 0 0 0 3.6 3.6"/>
+              </svg>
+            </button>
+          </div>
+          <p class="hint" id="capsHint" aria-live="polite" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 8v.01M12 11v5"/>
+            </svg>
+            <span>Caps Lock aktif. Password bisa salah ketik.</span>
+          </p>
+        </div>
+
+        <div class="options">
+          <label class="remember" for="remember">
+            <input type="checkbox" id="remember" name="remember">
+            <span class="checkbox-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5"/>
+              </svg>
+            </span>
+            <span>Ingat saya 7 hari</span>
+          </label>
+          <span class="session-note">Sesi normal 2 jam</span>
+        </div>
+
+        <button type="submit" class="submit" id="btnLogin">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-label">Masuk ke dashboard</span>
+        </button>
+
+        <p class="feedback error" id="formError" role="alert" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 8v5M12 16.5v.01"/>
+          </svg>
+          <span class="feedback-text"></span>
+        </p>
+
+        <p class="feedback success" id="formSuccess" role="status" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="m8.5 12.5 2.5 2.5 4.5-5"/>
+          </svg>
+          <span class="feedback-text"></span>
+        </p>
+      </form>
+
+      <div class="card-foot">
+        <p class="access-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="10" width="14" height="10" rx="3"/>
+            <path d="M8 10V7.5a4 4 0 0 1 8 0V10"/>
+          </svg>
+          Akses khusus admin.
+        </p>
+        <p>Lupa password? Minta reset ke pemilik situs.</p>
+      </div>
+    </div>
+
+    <footer class="access-foot">
+      <p>© <span id="year">2026</span> Rizka Adsens</p>
+      <p>Console iklan Adsterra</p>
+    </footer>
+  </section>
+</main>
+
+<noscript>
+  <p class="noscript">JavaScript nonaktif. Aktifkan JavaScript untuk memakai formulir login ini.</p>
+</noscript>
+
+<script>
+  const form        = document.getElementById('loginForm');
+  const userInput   = document.getElementById('username');
+  const passInput   = document.getElementById('password');
+  const btnLogin    = document.getElementById('btnLogin');
+  const btnLabel    = btnLogin.querySelector('.btn-label');
+  const formError   = document.getElementById('formError');
+  const formSuccess = document.getElementById('formSuccess');
+  const capsHint    = document.getElementById('capsHint');
+  const toggle      = document.getElementById('togglePass');
+  const eyeOpen     = document.getElementById('eyeOpen');
+  const eyeClosed   = document.getElementById('eyeClosed');
+  const remember    = document.getElementById('remember');
+  const year        = document.getElementById('year');
+
+  year.textContent = new Date().getFullYear();
+
+  function setLoading(isLoading) {
+    btnLogin.classList.toggle('is-loading', isLoading);
+    btnLogin.disabled = isLoading;
+    btnLogin.setAttribute('aria-busy', String(isLoading));
+    btnLabel.textContent = isLoading ? 'Memeriksa akun...' : 'Masuk ke dashboard';
+  }
+
+  function clearFeedback() {
+    formError.hidden = true;
+    formSuccess.hidden = true;
+    userInput.removeAttribute('aria-invalid');
+    passInput.removeAttribute('aria-invalid');
+  }
+
+  function showError(text) {
+    formError.querySelector('.feedback-text').textContent = text;
+    formError.hidden = false;
+    formSuccess.hidden = true;
+    userInput.setAttribute('aria-invalid', 'true');
+    passInput.setAttribute('aria-invalid', 'true');
+  }
+
+  function showSuccess(text) {
+    formSuccess.querySelector('.feedback-text').textContent = text;
+    formSuccess.hidden = false;
+    formError.hidden = true;
+    userInput.removeAttribute('aria-invalid');
+    passInput.removeAttribute('aria-invalid');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isHidden = passInput.type === 'password';
+    passInput.type = isHidden ? 'text' : 'password';
+    toggle.setAttribute('aria-pressed', String(isHidden));
+    toggle.setAttribute('aria-label', isHidden ? 'Sembunyikan password' : 'Tampilkan password');
+    eyeOpen.hidden = isHidden;
+    eyeClosed.hidden = !isHidden;
+    passInput.focus();
+  });
+
+  function updateCaps(event) {
+    const isOn = typeof event.getModifierState === 'function' && event.getModifierState('CapsLock');
+    capsHint.hidden = !isOn;
+  }
+
+  passInput.addEventListener('keydown', updateCaps);
+  passInput.addEventListener('keyup', updateCaps);
+  passInput.addEventListener('blur', () => { capsHint.hidden = true; });
+
+  [userInput, passInput].forEach((input) => {
+    input.addEventListener('input', () => {
+      input.setCustomValidity('');
+      clearFeedback();
+    });
+  });
+
+  userInput.addEventListener('invalid', () => {
+    userInput.setCustomValidity('Masukkan username.');
+  });
+
+  passInput.addEventListener('invalid', () => {
+    passInput.setCustomValidity('Masukkan password.');
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    clearFeedback();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: userInput.value.trim(),
+          password: passInput.value,
+          remember: remember.checked
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.success) {
+        showSuccess('Berhasil. Membuka dashboard...');
+        btnLabel.textContent = 'Membuka dashboard...';
+        window.setTimeout(() => {
+          window.location.href = data.redirect || '/dashboard.html';
+        }, 650);
+        return;
+      }
+
+      const message = (data.message || 'Login gagal. Periksa username dan password.').replace(/!+$/, '.');
+      showError(message);
+      passInput.value = '';
+      passInput.focus();
+      setLoading(false);
+    } catch (error) {
+      showError('Tidak bisa terhubung ke server. Periksa koneksi, lalu coba lagi.');
+      setLoading(false);
+    }
+  });
+</script>
+</body>
+</html>

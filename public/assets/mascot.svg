@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" width="420" height="520" fill="none" role="img" aria-label="Maskot studio iklan Rizka Adsens">
+  <defs>
+    <linearGradient id="hair" x1="120" y1="100" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3D6A63"/>
+      <stop offset=".55" stop-color="#2A4A45"/>
+      <stop offset="1" stop-color="#17332E"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="150" y1="130" x2="270" y2="290" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFDCC0"/>
+      <stop offset=".62" stop-color="#F6C4A0"/>
+      <stop offset="1" stop-color="#E9A982"/>
+    </linearGradient>
+    <linearGradient id="overall" x1="160" y1="320" x2="270" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#88A58C"/>
+      <stop offset=".5" stop-color="#66836B"/>
+      <stop offset="1" stop-color="#496450"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="160" y1="290" x2="260" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#E9E0CF"/>
+    </linearGradient>
+    <linearGradient id="scarf" x1="170" y1="275" x2="260" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E98064"/>
+      <stop offset="1" stop-color="#B94E38"/>
+    </linearGradient>
+    <linearGradient id="coral" x1="310" y1="300" x2="390" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E98064"/>
+      <stop offset="1" stop-color="#B94E38"/>
+    </linearGradient>
+    <radialGradient id="iris" cx="0" cy="0" r="1" gradientTransform="translate(176 205) rotate(90) scale(25 17)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#69A79C"/>
+      <stop offset=".55" stop-color="#2D6A63"/>
+      <stop offset="1" stop-color="#123B38"/>
+    </radialGradient>
+    <radialGradient id="cheek" cx="0" cy="0" r="1" gradientTransform="translate(148 238) rotate(90) scale(12 22)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EE8E7C" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#EE8E7C" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#08120E" flood-opacity=".26"/>
+    </filter>
+    <filter id="blur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="212" cy="492" rx="108" ry="18" fill="#08120E" opacity=".3" filter="url(#blur)"/>
+
+  <g filter="url(#shadow)">
+    <!-- legs -->
+    <path d="M172 418c-2 16-1 33 2 49h23c1-18 1-34-1-49h-24Z" fill="url(#skin)"/>
+    <path d="M225 418c-2 16-1 33 2 49h23c1-18 1-34-1-49h-24Z" fill="url(#skin)"/>
+    <path d="M170 459c8 2 17 2 27 0l2 15c-10 3-21 3-31 0l2-15Z" fill="url(#cream)"/>
+    <path d="M225 459c8 2 17 2 27 0l2 15c-10 3-21 3-31 0l2-15Z" fill="url(#cream)"/>
+    <path d="M166 473c-3 5-3 10 2 13 7 4 20 4 28 0 4-2 4-8 0-13h-30Z" fill="#2C4A3B"/>
+    <path d="M224 473c-3 5-3 10 2 13 7 4 20 4 28 0 4-2 4-8 0-13h-30Z" fill="#2C4A3B"/>
+    <path d="M170 478h26M228 478h25" stroke="#6F8A72" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+
+    <!-- shirt -->
+    <path d="M156 306c3-14 22-24 54-24s51 10 54 24l8 82c1 15-12 26-28 26h-68c-16 0-29-11-28-26l8-82Z" fill="url(#cream)"/>
+    <path d="M177 293c8 12 20 18 33 18s25-6 33-18" stroke="#D8CDBB" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- overalls -->
+    <path d="M168 332c10-8 25-12 42-12s32 4 42 12l8 70c1 10-7 18-17 18h-66c-10 0-18-8-17-18l8-70Z" fill="url(#overall)"/>
+    <path d="M178 302c2 12 5 23 9 32l13-4c-4-9-7-19-9-30l-13 2Z" fill="#58745E"/>
+    <path d="M242 302c-2 12-5 23-9 32l-13-4c4-9 7-19 9-30l13 2Z" fill="#58745E"/>
+    <circle cx="184" cy="333" r="5" fill="#FFFDF8"/>
+    <circle cx="236" cy="333" r="5" fill="#FFFDF8"/>
+    <path d="M160 394c12 7 30 11 50 11s38-4 50-11l7 30c2 11-10 21-24 21h-66c-14 0-26-10-24-21l7-30Z" fill="url(#overall)"/>
+    <path d="M188 356h44c5 0 8 4 8 9v20c0 5-3 9-8 9h-44c-5 0-8-4-8-9v-20c0-5 3-9 8-9Z" fill="#58745E"/>
+    <path d="M188 356h44c5 0 8 4 8 9v7h-60v-7c0-5 3-9 8-9Z" fill="#4F6B54"/>
+
+    <!-- scarf -->
+    <path d="M170 281c12 11 68 11 80 0l5 20c-22 14-68 14-90 0l5-20Z" fill="url(#scarf)"/>
+    <path d="M240 300c18 12 21 35 12 54-7-16-16-29-28-39l16-15Z" fill="url(#scarf)"/>
+    <path d="M251 352c3 3 5 7 6 11M243 345c3 3 5 7 6 11M236 337c3 3 5 7 6 10" stroke="#8F3A26" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+
+    <!-- left waving arm -->
+    <path d="M166 314c-21-2-41-15-58-37l16-14c14 19 29 29 47 31l-5 20Z" fill="url(#cream)"/>
+    <path d="M122 278c-6-6-8-14-4-20 4-5 12-5 17 0l9 10-22 10Z" fill="#F6C4A0"/>
+    <g transform="rotate(-18 96 246)">
+      <path d="M84 243c-10 0-18-8-18-18s8-18 18-18 18 8 18 18-8 18-18 18Z" fill="url(#skin)"/>
+      <rect x="68" y="196" width="9" height="32" rx="4.5" fill="#F6C4A0" transform="rotate(-12 72 212)"/>
+      <rect x="79" y="189" width="9" height="39" rx="4.5" fill="#F6C4A0" transform="rotate(-4 83 208)"/>
+      <rect x="90" y="191" width="9" height="37" rx="4.5" fill="#F6C4A0" transform="rotate(4 94 209)"/>
+      <rect x="101" y="198" width="9" height="30" rx="4.5" fill="#F6C4A0" transform="rotate(12 105 213)"/>
+      <path d="M104 232c8-1 14 4 14 10 0 7-7 11-14 10l-7-10 7-10Z" fill="#F0B48F"/>
+      <path d="M84 228c4 4 10 4 14 0" stroke="#D99070" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+    </g>
+
+    <!-- right arm + megaphone -->
+    <path d="M258 314c18 5 32 17 41 34l-16 11c-7-13-18-21-31-25l6-20Z" fill="url(#cream)"/>
+    <g transform="rotate(-24 346 340)">
+      <path d="M303 326h63v28h-63v-28Z" fill="#B94E38"/>
+      <path d="M303 326h63v9h-63v-9Z" fill="#D9674F"/>
+      <path d="M303 326h63v28h-63v-28Z" stroke="#8F3A26" stroke-width="2" opacity=".5"/>
+      <ellipse cx="366" cy="340" rx="11" ry="20" fill="#FFFDF8"/>
+      <ellipse cx="366" cy="340" rx="7" ry="15" fill="#7A3B33"/>
+      <rect x="309" y="352" width="12" height="30" rx="6" fill="#FFFDF8"/>
+      <rect x="309" y="352" width="12" height="6" rx="3" fill="#D8CDBB"/>
+      <path d="M296 322c-8 0-14 6-14 14v8c0 8 6 14 14 14" stroke="#D9674F" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+    </g>
+    <path d="M300 355c-8-7-17-8-24-2-6 6-5 15 3 21 8 6 17 5 23-2l-2-17Z" fill="url(#skin)"/>
+    <path d="M283 365c4-2 8-2 12 1" stroke="#D99070" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+
+    <!-- neck -->
+    <path d="M190 270h40v30c0 8-8 14-20 14s-20-6-20-14v-30Z" fill="#E9A982"/>
+
+    <!-- back hair -->
+    <path d="M114 244c-18-86 8-152 96-152s114 66 96 152c-5 28-17 50-38 62 7-36 3-62-8-82-22 20-78 20-100 0-11 20-15 46-8 82-21-12-33-34-38-62Z" fill="url(#hair)"/>
+    <ellipse cx="118" cy="214" rx="14" ry="21" fill="#F6C4A0"/>
+    <ellipse cx="302" cy="214" rx="14" ry="21" fill="#F6C4A0"/>
+    <path d="M118 190c-10 30-10 64 2 94" stroke="#17332E" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+    <path d="M302 190c10 30 10 64-2 94" stroke="#17332E" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+
+    <!-- face -->
+    <ellipse cx="210" cy="202" rx="91" ry="85" fill="url(#skin)"/>
+    <path d="M154 154c8-20 30-33 56-33s48 13 56 33" stroke="#FFF1DF" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+
+    <!-- fringe -->
+    <path d="M121 201c-5-48 18-84 58-95-10 26-15 55-13 89-15 4-31 6-45 6Z" fill="url(#hair)"/>
+    <path d="M179 106c20-7 42-7 62 0-5 28-7 58-5 88-16-8-31-14-43-12-2-25-7-51-14-76Z" fill="url(#hair)"/>
+    <path d="M241 106c40 11 63 47 58 95-14 0-30-2-45-6 2-34-3-63-13-89Z" fill="url(#hair)"/>
+    <path d="M132 184c-7 32-5 62 5 88 8-19 12-40 10-62l-15-26Z" fill="url(#hair)"/>
+    <path d="M288 184c7 32 5 62-5 88-8-19-12-40-10-62l15-26Z" fill="url(#hair)"/>
+    <path d="M155 130c18-14 40-20 62-18" stroke="#69A79C" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+    <path d="M212 101c2-24 20-35 30-23-10 0-17 8-19 23" stroke="#2A4A45" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- eyes -->
+    <ellipse cx="177" cy="209" rx="23" ry="28" fill="#FFFDF8"/>
+    <ellipse cx="243" cy="209" rx="23" ry="28" fill="#FFFDF8"/>
+    <ellipse cx="178" cy="212" rx="16" ry="22" fill="url(#iris)"/>
+    <ellipse cx="242" cy="212" rx="16" ry="22" fill="url(#iris)"/>
+    <ellipse cx="178" cy="215" rx="7" ry="11" fill="#0E2A27"/>
+    <ellipse cx="242" cy="215" rx="7" ry="11" fill="#0E2A27"/>
+    <circle cx="172" cy="202" r="6" fill="#FFFDF8"/>
+    <circle cx="236" cy="202" r="6" fill="#FFFDF8"/>
+    <circle cx="185" cy="220" r="3" fill="#A9D6CF" opacity=".9"/>
+    <circle cx="249" cy="220" r="3" fill="#A9D6CF" opacity=".9"/>
+    <path d="M153 201c6-18 22-25 41-15" stroke="#17332E" stroke-width="7" stroke-linecap="round"/>
+    <path d="M267 201c-6-18-22-25-41-15" stroke="#17332E" stroke-width="7" stroke-linecap="round"/>
+    <path d="M159 174c8-6 20-6 28 0M233 174c8-6 20-6 28 0" stroke="#2A4A45" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+
+    <!-- cheeks, nose, mouth -->
+    <ellipse cx="148" cy="238" rx="22" ry="12" fill="url(#cheek)"/>
+    <ellipse cx="272" cy="238" rx="22" ry="12" fill="url(#cheek)"/>
+    <path d="M207 233c3 4 8 4 11 0" stroke="#D99070" stroke-width="3" stroke-linecap="round"/>
+    <path d="M195 250c5 9 25 9 30 0-2 14-8 20-15 20s-13-6-15-20Z" fill="#7A3B33"/>
+    <path d="M201 259c4 5 14 5 18 0-2 7-5 10-9 10s-7-3-9-10Z" fill="#E8897A"/>
+    <path d="M196 249c8 3 19 3 27 0" stroke="#FFFDF8" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+
+    <!-- hair shine -->
+    <path d="M148 146c14-22 36-33 60-34" stroke="#A9D6CF" stroke-width="5" stroke-linecap="round" opacity=".35"/>
+  </g>
+
+  <!-- floating chart card -->
+  <g transform="translate(28 350) rotate(-8)">
+    <rect x="7" y="12" width="104" height="124" rx="16" fill="#08120E" opacity=".28" filter="url(#blur)"/>
+    <rect x="0" y="0" width="104" height="124" rx="16" fill="#FFFDF8" stroke="#D8CDBB" stroke-width="2"/>
+    <circle cx="17" cy="18" r="5" fill="#D9674F"/>
+    <rect x="28" y="15" width="42" height="6" rx="3" fill="#D8CDBB"/>
+    <rect x="16" y="80" width="12" height="24" rx="4" fill="#6F8A72"/>
+    <rect x="36" y="64" width="12" height="40" rx="4" fill="#D9674F"/>
+    <rect x="56" y="50" width="12" height="54" rx="4" fill="#2A4A45"/>
+    <rect x="76" y="70" width="12" height="34" rx="4" fill="#E8B4A6"/>
+    <path d="M14 108h76" stroke="#D8CDBB" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
