@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<meta name="description" content="Buat dan kelola shortlink Mediafire dengan safelink dua tahap Vrizlink.">
+<meta name="description" content="Buat dan kelola shortlink untuk tautan apa pun dengan safelink dua tahap Vrizlink.">
 <title>Generator Shortlink | Vrizlink</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,16 +32,16 @@
 <main id="main">
   <section class="intro" aria-labelledby="page-title">
     <div class="intro-copy">
-      <p class="kicker">Mediafire ke Vrizlink</p>
-      <h1 id="page-title">Satu link rapi untuk <em>file yang dibagikan.</em></h1>
-      <p class="lede">Tempel tautan Mediafire, beri nama file, lalu bagikan shortlink-nya. Pengunjung melewati safelink dua tahap sebelum sampai ke file asli.</p>
+      <p class="kicker">Tautan ke Vrizlink</p>
+      <h1 id="page-title">Satu link rapi untuk <em>tautan yang dibagikan.</em></h1>
+      <p class="lede">Tempel tautan apa pun, beri nama, lalu bagikan shortlink-nya. Pengunjung melewati safelink dua tahap sebelum sampai ke tautan asli.</p>
     </div>
     <aside class="route-note" aria-label="Alur safelink">
       <p class="route-note-title">Alur pengunjung</p>
       <ol class="route-list">
         <li><span>1</span> Tunggu <b id="route-wait">20</b> detik</li>
-        <li><span>2</span> Buka Get Link</li>
-        <li><span>3</span> Tunggu <b id="route-final">10</b> detik, unduh</li>
+        <li><span>2</span> Subscribe dua kanal YouTube, lalu Get Link</li>
+        <li><span>3</span> Tunggu <b id="route-final">10</b> detik, buka tautan</li>
       </ol>
     </aside>
   </section>
@@ -52,13 +52,13 @@
         <span class="panel-index" aria-hidden="true">01</span>
         <div>
           <h2 id="maker-title">Buat shortlink</h2>
-          <p>Hanya tautan dari mediafire.com.</p>
+          <p>Semua tautan http dan https.</p>
         </div>
       </header>
 
       <form id="create-form" class="link-form" novalidate>
         <div class="field">
-          <label for="original-url">URL Mediafire</label>
+          <label for="original-url">URL tautan asli</label>
           <input
             type="text"
             id="original-url"
@@ -67,15 +67,15 @@
             autocomplete="url"
             autocapitalize="off"
             spellcheck="false"
-            placeholder="https://www.mediafire.com/file/..."
+            placeholder="https://contoh.com/tautan/..."
             aria-describedby="url-hint url-error"
             required>
-          <p class="hint" id="url-hint">Boleh tanpa https://, contoh: mediafire.com/file/abc/file.zip</p>
+          <p class="hint" id="url-hint">Boleh tanpa https://. Semua tautan http dan https didukung.</p>
           <p class="field-error" id="url-error" hidden></p>
         </div>
 
         <div class="field">
-          <label for="title">Nama file / judul</label>
+          <label for="title">Nama tautan / judul</label>
           <input
             type="text"
             id="title"
@@ -149,7 +149,7 @@
 
 <footer class="site-foot">
   <span><strong>Vrizlink</strong> · studio Rizka</span>
-  <span>Shortlink hanya untuk tautan Mediafire.</span>
+  <span>Shortlink untuk semua tautan http dan https.</span>
 </footer>
 
 <dialog class="dialog" id="edit-dialog" aria-labelledby="edit-title">
@@ -161,13 +161,13 @@
     </header>
 
     <div class="field">
-      <label for="edit-url">URL Mediafire</label>
+      <label for="edit-url">URL tautan asli</label>
       <input type="text" id="edit-url" inputmode="url" autocapitalize="off" spellcheck="false" aria-describedby="edit-url-error" required>
       <p class="field-error" id="edit-url-error" hidden></p>
     </div>
 
     <div class="field">
-      <label for="edit-title-field">Nama file / judul</label>
+      <label for="edit-title-field">Nama tautan / judul</label>
       <input type="text" id="edit-title-field" maxlength="160" aria-describedby="edit-title-error" required>
       <p class="field-error" id="edit-title-error" hidden></p>
     </div>

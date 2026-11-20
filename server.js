@@ -140,33 +140,6 @@ function linkJson(row) {
   };
 }
 
-function normalizeMediafireUrl(input) {
-  if (typeof input !== 'string') return null;
-
-  let value = input.trim();
-  if (!value) return null;
-  if (!/^https?:\/\//i.test(value)) value = `https://${value}`;
-
-  let parsed;
-  try {
-    parsed = new URL(value);
-  } catch (error) {
-    return null;
-  }
-
-  if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null;
-  if (parsed.username || parsed.password) return null;
-
-  const host = parsed.hostname.toLowerCase();
-  const isMediafire = host === 'mediafire.com' || host.endsWith('.mediafire.com');
-  if (!isMediafire) return null;
-  if (parsed.pathname === '/' || parsed.pathname === '') return null;
-
-  parsed.protocol = 'https:';
-  parsed.hash = '';
-  return parsed.toString();
-}
-
 function normalizeTitle(input) {
   if (typeof input !== 'string') return null;
   const title = input.trim().replace(/\s+/g, ' ');
@@ -204,7 +177,7 @@ function normalizeText(input, maxLength) {
 /* ====== MIDDLEWARE PROTEKSI ====== */
 function requireLogin(req, res, next) {
   if (req.session && req.session.loggedIn && req.session.userId) return next();
-  return res.redirect('/login.html');
+  return res.redirect('/login');
 }
 
 function requireAuthApi(req, res, next) {
@@ -262,16 +235,28 @@ app.post('/login', loginLimiter, async (req, res) => {
     }
 
     await saveSession(req);
-    return res.json({ success: true, redirect: '/dashboard.html' });
+    return res.json({ success: true, redirect: '/dashboard' });
   } catch (error) {
     console.error('Login error:', error.message);
     return res.status(500).json({ success: false, message: 'Login gagal. Coba lagi.' });
   }
 });
 
-/* ====== ROUTE: DASHBOARD ====== */
-app.get('/dashboard.html', requireLogin, (req, res) => {
+/* ====== ROUTE: LOGIN & DASHBOARD ====== */
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/login.html', (req, res) => {
+  res.redirect(301, '/login');
+});
+
+app.get('/dashboard', requireLogin, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
+app.get('/dashboard.html', requireLogin, (req, res) => {
+  res.redirect(301, '/dashboard');
 });
 
 /* ====== FILE STATIS ====== */
@@ -293,9 +278,9 @@ app.post('/logout', (req, res) => {
 /* ====== ROUTE: ROOT ====== */
 app.get('/', (req, res) => {
   if (req.session && req.session.loggedIn) {
-    return res.redirect('/dashboard.html');
+    return res.redirect('/dashboard');
   }
-  res.redirect('/login.html');
+  res.redirect('/login');
 });
 
 /* ====== API: KONFIGURASI ====== */
@@ -327,11 +312,11 @@ app.get('/api/shortlinks', requireAuthApi, async (req, res) => {
 });
 
 app.post('/api/shortlinks', requireAuthApi, async (req, res) => {
-  const originalUrl = normalizeMediafireUrl(req.body && req.body.original_url);
+  const originalUrl = normalizeHttpUrl(req.body && req.body.original_url);
   const title = normalizeTitle(req.body && req.body.title);
 
   if (!originalUrl) {
-    return res.status(400).json({ error: 'Masukkan tautan Mediafire yang valid.' });
+    return res.status(400).json({ error: 'Masukkan tautan yang valid, diawali http:// atau https://.' });
   }
   if (!title) {
     return res.status(400).json({ error: 'Judul harus 2 sampai 160 karakter.' });
@@ -375,9 +360,9 @@ app.put('/api/shortlinks/:id', requireAuthApi, async (req, res) => {
   let status = null;
 
   if (body.original_url !== undefined) {
-    originalUrl = normalizeMediafireUrl(body.original_url);
+    originalUrl = normalizeHttpUrl(body.original_url);
     if (!originalUrl) {
-      return res.status(400).json({ error: 'Masukkan tautan Mediafire yang valid.' });
+      return res.status(400).json({ error: 'Masukkan tautan yang valid, diawali http:// atau https://.' });
     }
   }
 

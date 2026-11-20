@@ -45,7 +45,7 @@ Tema terang tetap. Alasan: halaman login adalah ambang merek dengan satu sumber 
 
 ## Layar Dashboard (Generator Shortlink)
 
-Pekerjaan layar: membuat shortlink Mediafire dan merawat daftar link yang sudah ada. Satu keputusan utama: link mana yang perlu disalin, diedit, atau dinonaktifkan.
+Pekerjaan layar: membuat shortlink untuk tautan apa pun dan merawat daftar link yang sudah ada. Satu keputusan utama: link mana yang perlu disalin, diedit, atau dinonaktifkan.
 
 Dial: **ENERGY 3 / RHYTHM 3 / MOTION 2**. Dua panel bersebelahan di desktop (form pembuat dan daftar link), bertumpuk di ponsel dengan form lebih dulu. Tidak ada sidebar scaffold, baris kartu statistik, chart, atau activity feed. Hitungan unduhan dan tanggal dibuat berasal dari database, bukan angka contoh.
 
@@ -53,7 +53,7 @@ Daftar link disusun seperti ledger: judul, status, shortlink, URL asli, lalu aks
 
 ## Safelink Vrizlink
 
-Dial: **ENERGY 2 / RHYTHM 2 / MOTION 2**. Halaman publik `/kode` adalah halaman tugas, bukan landing page. Urutan bacaan: nama file, satu kalimat penjelasan, lalu kartu alur dua tahap. Countdown memakai angka serif besar dan bilah coral; tombol muncul setelah hitungan selesai. Tidak ada loop dekoratif, tidak ada badge "AI", tidak ada figur atau testimoni.
+Dial: **ENERGY 2 / RHYTHM 2 / MOTION 2**. Halaman publik `/kode` adalah halaman tugas, bukan landing page. Urutan bacaan: nama tautan, satu kalimat penjelasan, lalu kartu alur dua tahap. Setelah hitungan pertama, dua kanal YouTube dibuka; tombol Get Link terkunci sampai keduanya dibuka. Countdown memakai angka serif besar dan bilah coral; tombol muncul setelah hitungan selesai. Tidak ada loop dekoratif, tidak ada badge "AI", tidak ada figur atau testimoni.
 
 Bayangan hanya dipakai untuk panel dan dialog yang memang berdiri di atas kertas, bukan pada setiap baris atau tombol. Iklan diberi label "Iklan", diletakkan di alur normal, dan tidak pernah menutupi tombol. Ukuran yang tidak muat di layar disembunyikan; ukuran yang tampil memesan ruangnya agar halaman tidak meloncat. Halaman memakai `noindex` karena setiap kode adalah tautan pribadi.
 
@@ -72,4 +72,4 @@ Ikon dibuat sendiri, bukan Lucide atau library default: wajah pengguna, gembok, 
 - "Sesi normal 2 jam" dan "Ingat saya 7 hari" sesuai perilaku server.
 - Tidak ada nomor atau metrik yang dibuat-buat di kartu ilustrasi; kartu hanya bentuk dekoratif.
 - Dashboard hanya menampilkan link, unduhan, dan tanggal yang benar-benar tersimpan di database.
-- Safelink hanya menampilkan judul file yang di-input pemilik link dan status tautan yang sebenarnya.
+- Safelink hanya menampilkan judul tautan yang di-input pemilik link dan status tautan yang sebenarnya.

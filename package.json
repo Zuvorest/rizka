@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "test": "node --test",
     "dev": "node --watch server.js",
     "init-db": "node init-db.js",
     "set-password": "node set-password.js"

@@ -78,7 +78,7 @@ function renderSafelink({ title, code, baseUrl }) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Safelink ${safeTitle}. Selesaikan dua langkah untuk membuka tautan Mediafire.">
+<meta name="description" content="Safelink ${safeTitle}. Selesaikan dua langkah untuk membuka tautan asli.">
 <title>${safeTitle} | Vrizlink</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +98,9 @@ ${ads.popunder}
     --coral-deep: #A8452F;
     --line: #DCD3C2;
     --border: #8C8475;
+    --cream-deep: #EFE7D6;
+    --sage-soft: #EDF3EC;
+    --sage-line: #C8D8C8;
     --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
     --sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
@@ -422,6 +425,91 @@ ${ads.popunder}
     max-width: 34ch;
   }
 
+  .btn.is-locked {
+    background: var(--muted);
+    border-color: var(--muted);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  .btn.is-locked:hover { background: var(--muted); }
+
+  .sub-list {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+
+  .sub-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--cream);
+  }
+
+  .sub-text {
+    display: grid;
+    gap: 1px;
+    min-width: 0;
+  }
+
+  .sub-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .sub-name {
+    font-size: 13.5px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .sub-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--warm-white);
+    color: var(--pine);
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .16s ease, border-color .16s ease, color .16s ease;
+  }
+
+  .sub-link:hover {
+    background: var(--cream-deep);
+    border-color: var(--pine);
+  }
+
+  .sub-link.is-done {
+    background: var(--sage-soft);
+    border-color: var(--sage-line);
+    color: var(--sage-deep);
+  }
+
+  .sub-link.is-done:hover {
+    background: var(--sage-soft);
+    border-color: var(--sage-deep);
+  }
+
+  .sub-status {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
   .panel-enter {
     animation: rise .38s ease both;
   }
@@ -488,6 +576,8 @@ ${ads.popunder}
     .flow-card { border-radius: 14px; }
     .btn { width: 100%; }
     .btn-note { max-width: none; }
+    .sub-item { align-items: flex-start; flex-wrap: wrap; }
+    .sub-link { width: 100%; min-height: 44px; }
   }
 
   @media (min-width: 1280px) {
@@ -565,15 +655,15 @@ ${ads.popunder}
       <div class="file-top">
         <span class="file-kind">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-            <path d="M14 3.5V8h4M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1L10.9 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20.1l1.1-1.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
-          File Mediafire
+          Tautan asli
         </span>
         <span class="file-status">Tautan aktif</span>
       </div>
       <h1 id="file-title">${safeTitle}</h1>
-      <p class="file-lede">Selesaikan dua langkah singkat. Setelah itu tombol unduh membuka file asli di Mediafire.</p>
+      <p class="file-lede">Selesaikan dua langkah singkat. Setelah itu tombol buka tautan mengarah ke sumber asli.</p>
     </section>
 
     <section class="flow-card" aria-labelledby="flow-title">
@@ -587,7 +677,7 @@ ${ads.popunder}
 
       <div class="panel panel-enter" id="stage-wait">
         <h2 class="wait-head" tabindex="-1">Tunggu<em>.</em><em>.</em><em>.</em></h2>
-        <p class="wait-note">Tombol Get Link terbuka setelah hitungan selesai.</p>
+        <p class="wait-note">Setelah hitungan, subscribe ke dua kanal YouTube untuk membuka Get Link.</p>
         <div class="count-row">
           <span class="count-value" id="count-wait" aria-hidden="true">${WAIT_SECONDS}</span>
           <span class="count-unit">detik</span>
@@ -598,23 +688,44 @@ ${ads.popunder}
       </div>
 
       <div class="panel" id="stage-gate" hidden>
-        <h2 class="wait-head" tabindex="-1">Siap. <em>Ambil link.</em></h2>
-        <p class="wait-note">Get Link membuka halaman sponsor di tab baru. Halaman ini tetap terbuka.</p>
+        <h2 class="wait-head" id="gate-title" tabindex="-1">Siap. <em>Subscribe dua kanal.</em></h2>
+        <p class="wait-note" id="gate-note">Subscribe ke kedua kanal YouTube di bawah untuk membuka tombol Get Link.</p>
+        <ul class="sub-list" aria-label="Kanal YouTube yang perlu dibuka">
+          <li class="sub-item">
+            <div class="sub-text">
+              <span class="sub-label">Kanal 1</span>
+              <strong class="sub-name">@vrizchanel</strong>
+            </div>
+            <a class="sub-link" href="https://www.youtube.com/@vrizchanel?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-sub="1" aria-label="Subscribe ke @vrizchanel di YouTube, buka tab baru">
+              <span class="sub-link-label">Subscribe</span>
+            </a>
+          </li>
+          <li class="sub-item">
+            <div class="sub-text">
+              <span class="sub-label">Kanal 2</span>
+              <strong class="sub-name">@rizzofcc</strong>
+            </div>
+            <a class="sub-link" href="https://www.youtube.com/@rizzofcc?sub_confirmation=1" target="_blank" rel="noopener noreferrer" data-sub="2" aria-label="Subscribe ke @rizzofcc di YouTube, buka tab baru">
+              <span class="sub-link-label">Subscribe</span>
+            </a>
+          </li>
+        </ul>
+        <p class="sub-status" id="sub-status" role="status">0 dari 2 kanal dibuka.</p>
         <div class="action-row">
-          <a class="btn" id="get-link" href="${escapeHtml(SMARTLINK_URL)}" target="_blank" rel="noopener noreferrer">
+          <a class="btn is-locked" id="get-link" href="${escapeHtml(SMARTLINK_URL)}" target="_blank" rel="noopener noreferrer" aria-disabled="true" aria-describedby="get-link-note">
             Get Link
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M14 5h5v5M19 5l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </a>
-          <span class="btn-note">Kembali ke tab ini setelah halaman sponsor ditutup.</span>
+          <span class="btn-note" id="get-link-note">Get Link aktif setelah kedua kanal dibuka.</span>
         </div>
       </div>
 
       <div class="panel" id="stage-final" hidden>
         <h2 class="wait-head" tabindex="-1">Final<em>.</em><em>.</em><em>.</em></h2>
-        <p class="wait-note">Hitungan terakhir. Tombol unduh muncul setelah selesai.</p>
+        <p class="wait-note">Hitungan terakhir. Tombol buka tautan muncul setelah selesai.</p>
         <div class="count-row">
           <span class="count-value" id="count-final" aria-hidden="true">${FINAL_SECONDS}</span>
           <span class="count-unit">detik</span>
@@ -625,17 +736,17 @@ ${ads.popunder}
       </div>
 
       <div class="panel" id="stage-download" hidden>
-        <h2 class="wait-head" tabindex="-1">File siap<em>.</em></h2>
-        <p class="wait-note">Tombol ini membuka tautan Mediafire asli di tab ini.</p>
+        <h2 class="wait-head" tabindex="-1">Tautan siap<em>.</em></h2>
+        <p class="wait-note">Tombol ini membuka tautan asli di tab ini.</p>
         <div class="action-row">
           <button class="btn" type="button" id="download-btn">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 4v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M14 5h5v5M19 5l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <span class="btn-label">Download Files</span>
+            <span class="btn-label">Buka Tautan</span>
           </button>
-          <span class="btn-note">Anda akan diarahkan ke Mediafire.</span>
+          <span class="btn-note">Anda akan diarahkan ke tautan asli.</span>
         </div>
         <p class="flow-error" id="download-error" hidden role="alert">Gagal membuka tautan. Periksa koneksi, lalu coba lagi.</p>
       </div>
@@ -662,7 +773,7 @@ ${ads.popunder}
 
     <footer class="page-footer">
       <span><strong>Vrizlink</strong> · safelink dua tahap</span>
-      <span>File dibuka dari Mediafire</span>
+      <span>Tautan dibuka dari sumber asli</span>
     </footer>
   </main>
 
@@ -704,6 +815,12 @@ ${ads.popunder}
   var announcer = document.getElementById('announcer');
   var stepTitle = document.getElementById('flow-title');
   var dots = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
+  var gateTitle = document.getElementById('gate-title');
+  var gateNote = document.getElementById('gate-note');
+  var getLinkNote = document.getElementById('get-link-note');
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('.sub-link'));
+  var subStatus = document.getElementById('sub-status');
+  var openedSubs = {};
   var finalStarted = false;
 
   function announce(text) {
@@ -732,6 +849,49 @@ ${ads.popunder}
     });
     stepTitle.textContent = 'Langkah ' + stage + ' dari 2';
   }
+
+  function openedSubCount() {
+    return Object.keys(openedSubs).length;
+  }
+
+  function allSubsOpened() {
+    return openedSubCount() >= subLinks.length;
+  }
+
+  function updateGate() {
+    var opened = openedSubCount();
+    var total = subLinks.length;
+
+    if (allSubsOpened()) {
+      subStatus.textContent = total + ' dari ' + total + ' kanal dibuka. Get Link aktif.';
+      getLink.removeAttribute('aria-disabled');
+      getLink.classList.remove('is-locked');
+      gateTitle.innerHTML = 'Siap. <em>Ambil link.</em>';
+      gateNote.textContent = 'Kedua kanal sudah dibuka. Get Link membuka halaman sponsor di tab baru.';
+      getLinkNote.textContent = 'Kembali ke tab ini setelah halaman sponsor ditutup.';
+      return;
+    }
+
+    subStatus.textContent = opened + ' dari ' + total + ' kanal dibuka.';
+    getLink.setAttribute('aria-disabled', 'true');
+    getLink.classList.add('is-locked');
+    gateTitle.innerHTML = 'Siap. <em>Subscribe dua kanal.</em>';
+    gateNote.textContent = 'Subscribe ke kedua kanal YouTube di bawah untuk membuka tombol Get Link.';
+    getLinkNote.textContent = 'Get Link aktif setelah kedua kanal dibuka.';
+  }
+
+  subLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      var handle = link.closest('.sub-item').querySelector('.sub-name').textContent;
+      openedSubs[link.getAttribute('data-sub')] = true;
+      link.classList.add('is-done');
+      link.querySelector('.sub-link-label').textContent = 'Buka lagi';
+      link.setAttribute('aria-label', 'Buka lagi kanal ' + handle + ' di YouTube');
+      updateGate();
+    });
+  });
+
+  updateGate();
 
   function runCountdown(options) {
     var seconds = options.seconds;
@@ -777,7 +937,7 @@ ${ads.popunder}
       fill: barFinalFill,
       onDone: function () {
         showPanel(stageDownload);
-        announce('Tombol Download Files tersedia.');
+        announce('Tombol Buka Tautan tersedia.');
         downloadBtn.focus({ preventScroll: true });
       }
     });
@@ -791,12 +951,21 @@ ${ads.popunder}
     fill: barWaitFill,
     onDone: function () {
       showPanel(stageGate);
-      announce('Waktu tunggu selesai. Tombol Get Link tersedia.');
-      getLink.focus({ preventScroll: true });
+      announce('Waktu tunggu selesai. Subscribe ke kedua kanal YouTube untuk membuka tombol Get Link.');
+      if (allSubsOpened()) {
+        getLink.focus({ preventScroll: true });
+      } else {
+        subLinks[0].focus({ preventScroll: true });
+      }
     }
   });
 
-  getLink.addEventListener('click', function () {
+  getLink.addEventListener('click', function (event) {
+    if (getLink.getAttribute('aria-disabled') === 'true') {
+      event.preventDefault();
+      announce('Subscribe ke kedua kanal YouTube dulu.');
+      return;
+    }
     startFinalCountdown();
   });
 

@@ -67,7 +67,7 @@
       body: config.body
     }).then(function (response) {
       if (response.status === 401) {
-        window.location.href = '/login.html';
+        window.location.href = '/login';
         throw new Error('Sesi berakhir.');
       }
       return response.json().catch(function () { return {}; }).then(function (data) {
@@ -92,10 +92,11 @@
     }, 2600);
   }
 
-  function normalizeMediafire(raw) {
+  function normalizeUrl(raw) {
     var value = String(raw || '').trim();
     if (!value) return '';
 
+    if (/^[a-z][a-z0-9+.-]*:\/\//i.test(value) && !/^https?:\/\//i.test(value)) return null;
     if (!/^https?:\/\//i.test(value)) value = 'https://' + value;
 
     var parsed;
@@ -108,12 +109,6 @@
     if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null;
     if (parsed.username || parsed.password) return null;
 
-    var host = parsed.hostname.toLowerCase();
-    if (host !== 'mediafire.com' && !host.endsWith('.mediafire.com')) return null;
-    if (parsed.pathname === '/' || parsed.pathname === '') return null;
-
-    parsed.protocol = 'https:';
-    parsed.hash = '';
     return parsed.toString();
   }
 
@@ -352,7 +347,7 @@
     event.preventDefault();
     resetCreateErrors();
 
-    var normalizedUrl = normalizeMediafire(urlInput.value);
+    var normalizedUrl = normalizeUrl(urlInput.value);
     var title = titleInput.value.trim().replace(/\s+/g, ' ');
     var valid = true;
 
@@ -361,8 +356,8 @@
         urlInput,
         urlError,
         urlInput.value.trim()
-          ? 'URL harus dari mediafire.com dan menunjuk ke file, bukan halaman utama.'
-          : 'Masukkan URL Mediafire.'
+          ? 'Masukkan URL yang valid, diawali http:// atau https://.'
+          : 'Masukkan URL tautan asli.'
       );
       valid = false;
     }
@@ -501,12 +496,12 @@
     clearFieldError(editTitle, editTitleError);
     editError.hidden = true;
 
-    var normalizedUrl = normalizeMediafire(editUrl.value);
+    var normalizedUrl = normalizeUrl(editUrl.value);
     var title = editTitle.value.trim().replace(/\s+/g, ' ');
     var valid = true;
 
     if (!normalizedUrl) {
-      setFieldError(editUrl, editUrlError, 'URL harus dari mediafire.com dan menunjuk ke file.');
+      setFieldError(editUrl, editUrlError, 'Masukkan URL yang valid, diawali http:// atau https://.');
       valid = false;
     }
 
@@ -619,7 +614,7 @@
     fetch('/logout', { method: 'POST' })
       .catch(function () { return null; })
       .finally(function () {
-        window.location.href = '/login.html';
+        window.location.href = '/login';
       });
   });
 
