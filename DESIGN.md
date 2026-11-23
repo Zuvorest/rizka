@@ -53,7 +53,7 @@ Daftar link disusun seperti ledger: judul, status, shortlink, URL asli, lalu aks
 
 ## Safelink Vrizlink
 
-Dial: **ENERGY 2 / RHYTHM 2 / MOTION 2**. Halaman publik `/kode` adalah halaman tugas, bukan landing page. Urutan bacaan: nama tautan, satu kalimat penjelasan, lalu kartu alur dua tahap. Setelah hitungan pertama, dua kanal YouTube dibuka; tombol Get Link terkunci sampai keduanya dibuka. Countdown memakai angka serif besar dan bilah coral; tombol muncul setelah hitungan selesai. Tidak ada loop dekoratif, tidak ada badge "AI", tidak ada figur atau testimoni.
+Dial: **ENERGY 2 / RHYTHM 2 / MOTION 2**. Halaman publik `/kode` adalah halaman tugas, bukan landing page. Urutan bacaan: nama tautan, satu kalimat penjelasan, lalu kartu alur dua tahap. Setelah hitungan pertama, dua kanal YouTube dibuka; tombol Get Link terkunci sampai keduanya dibuka. Setelah itu tautan disiapkan selama 6 detik, lalu dialog petunjuk menjelaskan halaman sponsor di tab baru dan cara kembali. Countdown memakai angka serif besar dan bilah coral; tombol muncul setelah hitungan selesai. Tidak ada loop dekoratif, tidak ada badge "AI", tidak ada figur atau testimoni.
 
 Bayangan hanya dipakai untuk panel dan dialog yang memang berdiri di atas kertas, bukan pada setiap baris atau tombol. Iklan diberi label "Iklan", diletakkan di alur normal, dan tidak pernah menutupi tombol. Ukuran yang tidak muat di layar disembunyikan; ukuran yang tampil memesan ruangnya agar halaman tidak meloncat. Halaman memakai `noindex` karena setiap kode adalah tautan pribadi.
 

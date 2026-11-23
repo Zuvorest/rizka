@@ -12,6 +12,7 @@ function positiveInt(value, fallback) {
 
 const WAIT_SECONDS = positiveInt(process.env.SAFELINK_WAIT_SECONDS, 20);
 const FINAL_SECONDS = positiveInt(process.env.SAFELINK_FINAL_SECONDS, 10);
+const CHECK_SECONDS = positiveInt(process.env.SAFELINK_CHECK_SECONDS, 6);
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => {
@@ -510,6 +511,104 @@ ${ads.popunder}
     color: var(--muted);
   }
 
+  .check-block {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--cream);
+  }
+
+  .check-block[hidden] { display: none; }
+
+  .check-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    border: 2px solid var(--sage-line);
+    border-top-color: var(--coral);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+
+  .check-text {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .check-count {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .btn-quiet {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--ink);
+    box-shadow: none;
+  }
+
+  .btn-quiet:hover {
+    background: var(--cream);
+    border-color: var(--pine);
+  }
+
+  .sponsor-dialog {
+    width: min(100% - 32px, 460px);
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--warm-white);
+    color: var(--ink);
+    box-shadow: 0 32px 60px -24px rgba(15, 26, 21, .55);
+  }
+
+  .sponsor-dialog::backdrop {
+    background: rgba(22, 38, 31, .58);
+  }
+
+  .sponsor-dialog-body {
+    display: grid;
+    gap: 12px;
+    padding: clamp(20px, 4vw, 28px);
+  }
+
+  .sponsor-dialog h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(26px, 5vw, 34px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -.015em;
+  }
+
+  .sponsor-dialog p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .sponsor-dialog .dialog-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .sponsor-dialog .btn { min-height: 44px; }
+
   .panel-enter {
     animation: rise .38s ease both;
   }
@@ -517,6 +616,10 @@ ${ads.popunder}
   @keyframes rise {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   .flow-error {
@@ -578,6 +681,8 @@ ${ads.popunder}
     .btn-note { max-width: none; }
     .sub-item { align-items: flex-start; flex-wrap: wrap; }
     .sub-link { width: 100%; min-height: 44px; }
+    .sponsor-dialog .dialog-actions { flex-direction: column-reverse; }
+    .sponsor-dialog .btn { width: 100%; }
   }
 
   @media (min-width: 1280px) {
@@ -677,7 +782,7 @@ ${ads.popunder}
 
       <div class="panel panel-enter" id="stage-wait">
         <h2 class="wait-head" tabindex="-1">Tunggu<em>.</em><em>.</em><em>.</em></h2>
-        <p class="wait-note">Setelah hitungan, subscribe ke dua kanal YouTube untuk membuka Get Link.</p>
+        <p class="wait-note">Setelah hitungan, subscribe ke dua kanal YouTube. Tautan disiapkan sebentar sebelum Get Link aktif.</p>
         <div class="count-row">
           <span class="count-value" id="count-wait" aria-hidden="true">${WAIT_SECONDS}</span>
           <span class="count-unit">detik</span>
@@ -689,7 +794,7 @@ ${ads.popunder}
 
       <div class="panel" id="stage-gate" hidden>
         <h2 class="wait-head" id="gate-title" tabindex="-1">Siap. <em>Subscribe dua kanal.</em></h2>
-        <p class="wait-note" id="gate-note">Subscribe ke kedua kanal YouTube di bawah untuk membuka tombol Get Link.</p>
+        <p class="wait-note" id="gate-note">Subscribe ke kedua kanal YouTube di bawah. Setelah keduanya dibuka, tunggu ${CHECK_SECONDS} detik.</p>
         <ul class="sub-list" aria-label="Kanal YouTube yang perlu dibuka">
           <li class="sub-item">
             <div class="sub-text">
@@ -711,6 +816,15 @@ ${ads.popunder}
           </li>
         </ul>
         <p class="sub-status" id="sub-status" role="status">0 dari 2 kanal dibuka.</p>
+        <div class="check-block" id="gate-check" hidden>
+          <div class="check-line">
+            <span class="spinner" aria-hidden="true"></span>
+            <p class="check-text">Menyiapkan tautan... <span class="check-count" id="check-count">${CHECK_SECONDS}</span> detik</p>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Menyiapkan tautan" aria-valuemin="0" aria-valuemax="${CHECK_SECONDS}" aria-valuenow="0" id="bar-check">
+            <div class="progress-bar" id="bar-check-fill"></div>
+          </div>
+        </div>
         <div class="action-row">
           <a class="btn is-locked" id="get-link" href="${escapeHtml(SMARTLINK_URL)}" target="_blank" rel="noopener noreferrer" aria-disabled="true" aria-describedby="get-link-note">
             Get Link
@@ -719,7 +833,7 @@ ${ads.popunder}
               <path d="M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </a>
-          <span class="btn-note" id="get-link-note">Get Link aktif setelah kedua kanal dibuka.</span>
+          <span class="btn-note" id="get-link-note">Get Link aktif setelah kedua kanal dibuka dan tautan siap.</span>
         </div>
       </div>
 
@@ -789,12 +903,25 @@ ${ads.popunder}
   </aside>
 </div>
 
+<dialog class="sponsor-dialog" id="sponsor-dialog" aria-labelledby="sponsor-title">
+  <div class="sponsor-dialog-body">
+    <h2 id="sponsor-title">Halaman sponsor akan terbuka di tab baru.</h2>
+    <p>Setelah halaman sponsor terbuka, kembali ke tab ini. Jangan tutup tab ini; tombol Buka Tautan menunggu di sini.</p>
+    <p>Halaman sponsor berisi iklan. Membukanya membantu Vrizlink tetap gratis.</p>
+    <div class="dialog-actions">
+      <button class="btn btn-quiet" type="button" id="sponsor-cancel">Nanti</button>
+      <a class="btn" id="sponsor-confirm" href="${escapeHtml(SMARTLINK_URL)}" target="_blank" rel="noopener noreferrer" autofocus>Buka sponsor</a>
+    </div>
+  </div>
+</dialog>
+
 <script>
 (function () {
   'use strict';
 
   var WAIT_SECONDS = ${WAIT_SECONDS};
   var FINAL_SECONDS = ${FINAL_SECONDS};
+  var CHECK_SECONDS = ${CHECK_SECONDS};
   var COMPLETE_URL = '/api/shortlinks/${encodeURIComponent(code)}/complete';
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -820,7 +947,16 @@ ${ads.popunder}
   var getLinkNote = document.getElementById('get-link-note');
   var subLinks = Array.prototype.slice.call(document.querySelectorAll('.sub-link'));
   var subStatus = document.getElementById('sub-status');
+  var gateCheck = document.getElementById('gate-check');
+  var checkCount = document.getElementById('check-count');
+  var barCheck = document.getElementById('bar-check');
+  var barCheckFill = document.getElementById('bar-check-fill');
+  var sponsorDialog = document.getElementById('sponsor-dialog');
+  var sponsorCancel = document.getElementById('sponsor-cancel');
+  var sponsorConfirm = document.getElementById('sponsor-confirm');
   var openedSubs = {};
+  var checkStarted = false;
+  var checkDone = false;
   var finalStarted = false;
 
   function announce(text) {
@@ -858,26 +994,69 @@ ${ads.popunder}
     return openedSubCount() >= subLinks.length;
   }
 
+  function openSponsorDialog() {
+    if (!sponsorDialog || sponsorDialog.open) return;
+    if (typeof sponsorDialog.showModal !== 'function') return;
+    sponsorDialog.showModal();
+  }
+
+  function startCheck() {
+    if (checkStarted) return;
+    checkStarted = true;
+    checkDone = false;
+    gateCheck.hidden = false;
+    getLink.setAttribute('aria-disabled', 'true');
+    getLink.classList.add('is-locked');
+    gateTitle.innerHTML = 'Menyiapkan <em>tautan.</em>';
+    gateNote.textContent = 'Kedua kanal sudah dibuka. Tunggu sebentar, jangan tutup halaman ini.';
+    getLinkNote.textContent = 'Get Link aktif setelah persiapan selesai.';
+    subStatus.textContent = '2 dari 2 kanal dibuka. Menyiapkan tautan.';
+    announce('Kedua kanal sudah dibuka. Menyiapkan tautan.');
+
+    runCountdown({
+      seconds: CHECK_SECONDS,
+      output: checkCount,
+      bar: barCheck,
+      fill: barCheckFill,
+      onDone: function () {
+        checkDone = true;
+        gateCheck.hidden = true;
+        updateGate();
+        openSponsorDialog();
+        announce('Tautan siap. Baca petunjuk sebelum membuka halaman sponsor.');
+      }
+    });
+  }
+
   function updateGate() {
     var opened = openedSubCount();
     var total = subLinks.length;
 
-    if (allSubsOpened()) {
-      subStatus.textContent = total + ' dari ' + total + ' kanal dibuka. Get Link aktif.';
-      getLink.removeAttribute('aria-disabled');
-      getLink.classList.remove('is-locked');
-      gateTitle.innerHTML = 'Siap. <em>Ambil link.</em>';
-      gateNote.textContent = 'Kedua kanal sudah dibuka. Get Link membuka halaman sponsor di tab baru.';
-      getLinkNote.textContent = 'Kembali ke tab ini setelah halaman sponsor ditutup.';
+    if (!allSubsOpened()) {
+      checkStarted = false;
+      checkDone = false;
+      gateCheck.hidden = true;
+      subStatus.textContent = opened + ' dari ' + total + ' kanal dibuka.';
+      getLink.setAttribute('aria-disabled', 'true');
+      getLink.classList.add('is-locked');
+      gateTitle.innerHTML = 'Siap. <em>Subscribe dua kanal.</em>';
+      gateNote.textContent = 'Subscribe ke kedua kanal YouTube di bawah untuk membuka tombol Get Link.';
+      getLinkNote.textContent = 'Get Link aktif setelah kedua kanal dibuka dan tautan siap.';
       return;
     }
 
-    subStatus.textContent = opened + ' dari ' + total + ' kanal dibuka.';
-    getLink.setAttribute('aria-disabled', 'true');
-    getLink.classList.add('is-locked');
-    gateTitle.innerHTML = 'Siap. <em>Subscribe dua kanal.</em>';
-    gateNote.textContent = 'Subscribe ke kedua kanal YouTube di bawah untuk membuka tombol Get Link.';
-    getLinkNote.textContent = 'Get Link aktif setelah kedua kanal dibuka.';
+    if (!checkDone) {
+      startCheck();
+      return;
+    }
+
+    gateCheck.hidden = true;
+    subStatus.textContent = total + ' dari ' + total + ' kanal dibuka. Get Link aktif.';
+    getLink.removeAttribute('aria-disabled');
+    getLink.classList.remove('is-locked');
+    gateTitle.innerHTML = 'Siap. <em>Ambil link.</em>';
+    gateNote.textContent = 'Kedua kanal sudah dibuka. Baca petunjuk sebelum membuka halaman sponsor.';
+    getLinkNote.textContent = 'Kembali ke tab ini setelah halaman sponsor ditutup.';
   }
 
   subLinks.forEach(function (link) {
@@ -951,7 +1130,7 @@ ${ads.popunder}
     fill: barWaitFill,
     onDone: function () {
       showPanel(stageGate);
-      announce('Waktu tunggu selesai. Subscribe ke kedua kanal YouTube untuk membuka tombol Get Link.');
+      announce('Waktu tunggu selesai. Subscribe ke kedua kanal YouTube. Setelah itu tautan disiapkan sebentar.');
       if (allSubsOpened()) {
         getLink.focus({ preventScroll: true });
       } else {
@@ -963,10 +1142,38 @@ ${ads.popunder}
   getLink.addEventListener('click', function (event) {
     if (getLink.getAttribute('aria-disabled') === 'true') {
       event.preventDefault();
-      announce('Subscribe ke kedua kanal YouTube dulu.');
+      announce(
+        checkStarted && !checkDone
+          ? 'Tautan sedang disiapkan. Tunggu sebentar.'
+          : 'Subscribe ke kedua kanal YouTube dulu.'
+      );
       return;
     }
+
+    if (sponsorDialog && typeof sponsorDialog.showModal === 'function') {
+      event.preventDefault();
+      openSponsorDialog();
+      return;
+    }
+
     startFinalCountdown();
+  });
+
+  sponsorCancel.addEventListener('click', function () {
+    sponsorDialog.close();
+  });
+
+  sponsorConfirm.addEventListener('click', function () {
+    sponsorDialog.close();
+    startFinalCountdown();
+  });
+
+  sponsorDialog.addEventListener('click', function (event) {
+    if (event.target === sponsorDialog) sponsorDialog.close();
+  });
+
+  sponsorDialog.addEventListener('close', function () {
+    if (!finalStarted) getLink.focus({ preventScroll: true });
   });
 
   downloadBtn.addEventListener('click', function () {
